@@ -71,7 +71,7 @@ model.summary()
 #%% Step 4: Model Evaluation
 
 #Fit and save model
-history = model.fit(train_gen, epochs=5, validation_data=(validation_gen))
+history = model.fit(train_gen, epochs=20, validation_data=(validation_gen))
 model.save('saved_model_Duong_65857.h5')
 
 #Plot Accuracy
