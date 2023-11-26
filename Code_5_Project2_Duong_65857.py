@@ -28,15 +28,18 @@ pred1 = np.argmax(pred1_prob, axis=-1)
 pred2_prob = model.predict(test2)
 pred2 = np.argmax(pred2_prob, axis=-1)
 
+classes = ['Large','Medium','Small','None']
 
-text_position = (650, 1400)
+text_position = (10, 100)
 text_color = 255
 font_path = os.path.join(root,'DejaVuSansMono.ttf')
-font = ImageFont.truetype(font_path, 100)
+font = ImageFont.truetype(font_path, 76)
 
 img1 = Image.open(test1_path)
 draw = ImageDraw.Draw(img1)
-text1 = 'Large Crack: '+str(round(pred1_prob[0,0]*100,2))+'%\n'\
+text1 = 'True Crack Classification Label: '+classes[pred1[0]]+'\n'\
+        +'Predicted Crack Classification Label: Medium\n\n\n\n\n\n\n\n\n\n\n\n'\
+        +'\n\n\n\n\n\n\nLarge Crack: '+str(round(pred1_prob[0,0]*100,2))+'%\n'\
         +'Medium Crack: '+str(round(pred1_prob[0,1]*100,2))+'%\n'\
         +'Small Crack: '+str(round(pred1_prob[0,2]*100,2))+'%\n'\
         +'No Crack: '+str(round(pred1_prob[0,3]*100,2))+'%\n'
@@ -47,7 +50,9 @@ img1.save(os.path.join(root,'Test Prediction 1:Crack__20180419_06_19_09,915.bmp'
 
 img2 = Image.open(test2_path)
 draw = ImageDraw.Draw(img2)
-text2 = 'Large Crack: '+str(round(pred2_prob[0,0]*100,2))+'%\n'\
+text2 = 'True Crack Classification Label: '+classes[pred2[0]]+'\n'\
+        +'Predicted Crack Classification Label: Large\n\n\n\n\n\n\n\n\n\n\n\n'\
+        +'\n\n\n\n\n\n\nLarge Crack: '+str(round(pred2_prob[0,0]*100,2))+'%\n'\
         +'Medium Crack: '+str(round(pred2_prob[0,1]*100,2))+'%\n'\
         +'Small Crack: '+str(round(pred2_prob[0,2]*100,2))+'%\n'\
         +'No Crack: '+str(round(pred2_prob[0,3]*100,2))+'%\n'
